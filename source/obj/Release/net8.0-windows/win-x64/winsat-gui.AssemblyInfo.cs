@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("winsat-gui")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+28b933fea01d10fe17c3229c1c95badd60bc6365")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c52a638b6adfa65046eecfebc946c0c6eb594b9a")]
 [assembly: System.Reflection.AssemblyProductAttribute("winsat-gui")]
 [assembly: System.Reflection.AssemblyTitleAttribute("winsat-gui")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
