@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <!-- Required to access the FolderBrowserDialog -->
+    <UseWindowsForms>true</UseWindowsForms>
+    <ApplicationIcon/>
+    <AssemblyName>winsat-gui</AssemblyName>
+    <RootNamespace>winsat_gui</RootNamespace>
+  </PropertyGroup>
+
+</Project>
