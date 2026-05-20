@@ -14,7 +14,16 @@ namespace winsat_gui
 {
     public partial class MainWindow : Window
     {
-        private Dictionary<string, string[]> _categories;
+        // Initialize the dictionary directly to satisfy the nullable strictness compiler checks
+        private Dictionary<string, string[]> _categories = new Dictionary<string, string[]>
+        {
+            { "Assessments", new[] { "formal", "dwm", "cpu", "mem", "d3d", "disk", "media", "mfmedia", "features" } },
+            { "Formal Scores", new[] { "dwmformal", "cpuformal", "memformal", "graphicsformal", "diskformal" } },
+            { "Prepopulation", new[] { "prepop", "prepop -graphics", "prepop -cpu", "prepop -mem", "prepop -disk", "prepop -dwm" } },
+            { "Sub-Assessments", new[] { "graphicsformal3d", "graphicsformalmedia" } },
+            { "Utilities", new[] { "viewlog", "viewevents", "query", "forgethistory" } }
+        };
+
         private Process? _activeProcess;
         private Stopwatch _stopwatch;
         private DispatcherTimer _timer;
@@ -27,21 +36,8 @@ namespace winsat_gui
             _timer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(500) };
             _timer.Tick += Timer_Tick;
 
-            InitializeData();
             InitializeEvents();
             LoadCategory("Assessments");
-        }
-
-        private void InitializeData()
-        {
-            _categories = new Dictionary<string, string[]>
-            {
-                { "Assessments", new[] { "formal", "dwm", "cpu", "mem", "d3d", "disk", "media", "mfmedia", "features" } },
-                { "Formal Scores", new[] { "dwmformal", "cpuformal", "memformal", "graphicsformal", "diskformal" } },
-                { "Prepopulation", new[] { "prepop", "prepop -graphics", "prepop -cpu", "prepop -mem", "prepop -disk", "prepop -dwm" } },
-                { "Sub-Assessments", new[] { "graphicsformal3d", "graphicsformalmedia" } },
-                { "Utilities", new[] { "viewlog", "viewevents", "query", "forgethistory" } }
-            };
         }
 
         private void InitializeEvents()

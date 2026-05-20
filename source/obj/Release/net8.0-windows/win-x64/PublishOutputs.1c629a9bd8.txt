@@ -1,0 +1,2 @@
+C:\ProgramData\JD-Github\winsat-gui\source\MatchBoxCSPublish\winsat-gui.pdb
+C:\ProgramData\JD-Github\winsat-gui\source\MatchBoxCSPublish\winsat-gui.exe
