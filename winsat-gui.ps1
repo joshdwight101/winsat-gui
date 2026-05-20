@@ -102,7 +102,7 @@ Add-Type -AssemblyName System.Drawing
                 
                 <TextBlock Text="v1.1" FontSize="12" Margin="10,0,0,2" Foreground="#666"/>
                 <TextBlock Text="by Joshua Dwight" FontSize="12" Margin="10,0,0,5" Foreground="#666"/>
-                <TextBlock Margin="10,0,0,20"><Hyperlink x:Name="lnkGithub" NavigateUri="https://github.com/joshdwight101"><Run Text="GitHub Repository"/></Hyperlink></TextBlock>
+                <TextBlock Margin="10,0,0,20"><Hyperlink x:Name="lnkGithub"><Run Text="GitHub Repository"/></Hyperlink></TextBlock>
 
                 <TextBlock Text="COMMANDS" FontSize="11" FontWeight="SemiBold" Foreground="#888" Margin="10,10,0,5"/>
                 
@@ -132,98 +132,100 @@ Add-Type -AssemblyName System.Drawing
                             <ColumnDefinition Width="150"/>
                             <ColumnDefinition Width="150"/>
                         </Grid.ColumnDefinitions>
-                    
+                        
                         <TextBlock Text="Command:" VerticalAlignment="Center" Grid.Column="0"/>
                         <ComboBox x:Name="cmbCommand" Grid.Column="1" Height="26" VerticalContentAlignment="Center"/>
                         <TextBlock Text="(i)" FontWeight="Bold" Grid.Column="2" Foreground="#005A9E" FontSize="16" Margin="5,0,0,0" VerticalAlignment="Center" ToolTip="Select the core WinSAT command to run."/>
-                    <CheckBox x:Name="chkVerbose" Content="-v (Verbose)" Grid.Column="3" VerticalAlignment="Center" ToolTip="Enables verbose output."/>
-                    <CheckBox x:Name="chkEef" Content="-eef (features only)" Grid.Column="4" VerticalAlignment="Center" ToolTip="Enumerates extended features. Only works with the 'features' command." IsEnabled="False"/>
-                </Grid>
+                        
+                        <CheckBox x:Name="chkVerbose" Content="-v (Verbose)" Grid.Column="3" VerticalAlignment="Center" ToolTip="Enables verbose output."/>
+                        <CheckBox x:Name="chkEef" Content="-eef (features only)" Grid.Column="4" VerticalAlignment="Center" ToolTip="Enumerates extended features. Only works with the 'features' command." IsEnabled="False"/>
+                    </Grid>
 
-                <Grid Margin="0,0,0,10">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="80"/>
-                        <ColumnDefinition Width="200"/>
-                        <ColumnDefinition Width="30"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
+                    <Grid Margin="0,0,0,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition Width="200"/>
+                            <ColumnDefinition Width="30"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <TextBlock Text="Restart:" VerticalAlignment="Center" Grid.Column="0"/>
+                        <ComboBox x:Name="cmbRestart" Grid.Column="1" Height="26" VerticalContentAlignment="Center" IsEnabled="False">
+                            <ComboBoxItem Content="(default)" IsSelected="True"/>
+                            <ComboBoxItem Content="clean"/>
+                            <ComboBoxItem Content="never"/>
+                        </ComboBox>
+                        <TextBlock Text="(i)" FontWeight="Bold" Grid.Column="2" Foreground="#005A9E" FontSize="16" Margin="5,0,0,0" VerticalAlignment="Center" ToolTip="Controls how formal assessments rerun. Clean resets history."/>
+                    </Grid>
+
+                    <Grid Margin="0,0,0,20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition Width="200"/>
+                            <ColumnDefinition Width="30"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <TextBlock Text="D3D Mode:" VerticalAlignment="Center" Grid.Column="0"/>
+                        <ComboBox x:Name="cmbD3d" Grid.Column="1" Height="26" VerticalContentAlignment="Center" IsEnabled="False">
+                            <ComboBoxItem Content="(default)" IsSelected="True"/>
+                            <ComboBoxItem Content="-dx9"/>
+                            <ComboBoxItem Content="-dx10"/>
+                        </ComboBox>
+                        <TextBlock Text="(i)" FontWeight="Bold" Grid.Column="2" Foreground="#005A9E" FontSize="16" Margin="5,0,0,0" VerticalAlignment="Center" ToolTip="Applies to the d3d command to force DX9 or DX10 execution."/>
+                    </Grid>
+
+                    <Separator Margin="0,0,0,10"/>
+
+                    <!-- 2. Output Options -->
+                    <TextBlock Text="2. Output Options" Style="{StaticResource HeaderStyle}"/>
                     
-                    <TextBlock Text="Restart:" VerticalAlignment="Center" Grid.Column="0"/>
-                    <ComboBox x:Name="cmbRestart" Grid.Column="1" Height="26" VerticalContentAlignment="Center" IsEnabled="False">
-                        <ComboBoxItem Content="(default)" IsSelected="True"/>
-                        <ComboBoxItem Content="clean"/>
-                        <ComboBoxItem Content="never"/>
-                    </ComboBox>
-                    <TextBlock Text="(i)" FontWeight="Bold" Grid.Column="2" Foreground="#005A9E" FontSize="16" Margin="5,0,0,0" VerticalAlignment="Center" ToolTip="Controls how formal assessments rerun. Clean resets history."/>
-                </Grid>
+                    <Grid Margin="0,5,0,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150"/> <!-- Increased from 100 -->
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="80"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="XML Output:" VerticalAlignment="Center"/>
+                        <TextBox x:Name="txtXml" Grid.Column="1" Height="26" Margin="0,0,10,0" VerticalContentAlignment="Center"/>
+                        <Button x:Name="btnBrowseXml" Grid.Column="2" Content="Browse..." Height="26"/>
+                    </Grid>
 
-                <Grid Margin="0,0,0,20">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="80"/>
-                        <ColumnDefinition Width="200"/>
-                        <ColumnDefinition Width="30"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
+                    <Grid Margin="0,0,0,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150"/> <!-- Increased from 100 -->
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="80"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Log File:" VerticalAlignment="Center"/>
+                        <TextBox x:Name="txtLog" Grid.Column="1" Height="26" Margin="0,0,10,0" VerticalContentAlignment="Center"/>
+                        <Button x:Name="btnBrowseLog" Grid.Column="2" Content="Browse..." Height="26"/>
+                    </Grid>
+
+                    <Grid Margin="0,0,0,20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150"/> <!-- Increased from 100 -->
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="80"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Datastore (prepop only):" VerticalAlignment="Center"/> <!-- Removed TextWrapping -->
+                        <TextBox x:Name="txtDatastore" Grid.Column="1" Height="26" Margin="0,0,10,0" VerticalContentAlignment="Center" Text="C:\Windows\Performance\WinSAT\Datastore"/>
+                        <Button x:Name="btnBrowseDatastore" Grid.Column="2" Content="Browse..." Height="26"/>
+                    </Grid>
                     
-                    <TextBlock Text="D3D Mode:" VerticalAlignment="Center" Grid.Column="0"/>
-                    <ComboBox x:Name="cmbD3d" Grid.Column="1" Height="26" VerticalContentAlignment="Center" IsEnabled="False">
-                        <ComboBoxItem Content="(default)" IsSelected="True"/>
-                        <ComboBoxItem Content="-dx9"/>
-                        <ComboBoxItem Content="-dx10"/>
-                    </ComboBox>
-                    <TextBlock Text="(i)" FontWeight="Bold" Grid.Column="2" Foreground="#005A9E" FontSize="16" Margin="5,0,0,0" VerticalAlignment="Center" ToolTip="Applies to the d3d command to force DX9 or DX10 execution."/>
-                </Grid>
+                    <Separator Margin="0,0,0,10"/>
 
-                <Separator Margin="0,0,0,10"/>
+                    <!-- 3. Command Preview -->
+                    <TextBlock Text="3. Command Preview" Style="{StaticResource HeaderStyle}"/>
+                    <Grid Margin="0,5,0,20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="80"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBox x:Name="txtPreview" Grid.Column="0" Height="30" Margin="0,0,10,0" IsReadOnly="True" Background="#F9F9F9" Foreground="#333" FontFamily="Consolas" VerticalContentAlignment="Center" Padding="5,0"/>
+                        <Button x:Name="btnCopy" Grid.Column="1" Content="Copy" Height="30"/>
+                    </Grid>
 
-                <!-- 2. Output Options -->
-                <TextBlock Text="2. Output Options" Style="{StaticResource HeaderStyle}"/>
-                
-                <Grid Margin="0,5,0,10">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="100"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="80"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Text="XML Output:" VerticalAlignment="Center"/>
-                    <TextBox x:Name="txtXml" Grid.Column="1" Height="26" Margin="0,0,10,0" VerticalContentAlignment="Center"/>
-                    <Button x:Name="btnBrowseXml" Grid.Column="2" Content="Browse..." Height="26"/>
-                </Grid>
-
-                <Grid Margin="0,0,0,10">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="100"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="80"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Text="Log File:" VerticalAlignment="Center"/>
-                    <TextBox x:Name="txtLog" Grid.Column="1" Height="26" Margin="0,0,10,0" VerticalContentAlignment="Center"/>
-                    <Button x:Name="btnBrowseLog" Grid.Column="2" Content="Browse..." Height="26"/>
-                </Grid>
-
-                <Grid Margin="0,0,0,20">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="100"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="80"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Text="Datastore (prepop only):" TextWrapping="Wrap" VerticalAlignment="Center"/>
-                    <TextBox x:Name="txtDatastore" Grid.Column="1" Height="26" Margin="0,0,10,0" VerticalContentAlignment="Center" Text="C:\Windows\Performance\WinSAT\Datastore"/>
-                    <Button x:Name="btnBrowseDatastore" Grid.Column="2" Content="Browse..." Height="26"/>
-                </Grid>
-                
-                <Separator Margin="0,0,0,10"/>
-
-                <!-- 3. Command Preview -->
-                <TextBlock Text="3. Command Preview" Style="{StaticResource HeaderStyle}"/>
-                <Grid Margin="0,5,0,20">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="80"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBox x:Name="txtPreview" Grid.Column="0" Height="30" Margin="0,0,10,0" IsReadOnly="True" Background="#F9F9F9" Foreground="#333" FontFamily="Consolas" VerticalContentAlignment="Center" Padding="5,0"/>
-                    <Button x:Name="btnCopy" Grid.Column="1" Content="Copy" Height="30"/>
-                </Grid>
                     <!-- 4. Execute -->
                     <TextBlock Text="4. Execute" Style="{StaticResource HeaderStyle}"/>
                     <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
@@ -287,7 +289,7 @@ Add-Type -AssemblyName System.Drawing
 "@
 
 # Read XAML
-$reader = (New-Object System.Xml.XmlNodeReader $xaml)
+$reader = (New-Object System.Xml.XmlNodeReader ([xml]$xaml))
 try {
     $Window = [System.Windows.Markup.XamlReader]::Load($reader)
 } catch {
@@ -704,8 +706,8 @@ Load-Category "Assessments"
 # SIG # Begin signature block
 # MIIFiwYJKoZIhvcNAQcCoIIFfDCCBXgCAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUI1fxkHQG/Z+WBgJP+N3f+KhR
-# eMegggMcMIIDGDCCAgCgAwIBAgIQdTnGUb3fnrZCF1K2xTtGMjANBgkqhkiG9w0B
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUpobDInrtp7aM4Uog89vnXgur
+# DFegggMcMIIDGDCCAgCgAwIBAgIQdTnGUb3fnrZCF1K2xTtGMjANBgkqhkiG9w0B
 # AQsFADAkMSIwIAYDVQQDDBlDSEVTSS1KRENvZGUtU2lnbmluZy0yMDI2MB4XDTI2
 # MDMwNjE0NDY0NVoXDTI3MDMwNjE0NDY0NVowJDEiMCAGA1UEAwwZQ0hFU0ktSkRD
 # b2RlLVNpZ25pbmctMjAyNjCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEB
@@ -725,11 +727,11 @@ Load-Category "Assessments"
 # JDEiMCAGA1UEAwwZQ0hFU0ktSkRDb2RlLVNpZ25pbmctMjAyNgIQdTnGUb3fnrZC
 # F1K2xTtGMjAJBgUrDgMCGgUAoHgwGAYKKwYBBAGCNwIBDDEKMAigAoAAoQKAADAZ
 # BgkqhkiG9w0BCQMxDAYKKwYBBAGCNwIBBDAcBgorBgEEAYI3AgELMQ4wDAYKKwYB
-# BAGCNwIBFTAjBgkqhkiG9w0BCQQxFgQUNAqf6NlnqtgTfp5q5TZrWGtqzO4wDQYJ
-# KoZIhvcNAQEBBQAEggEAQMKbgV8w+zi3MKluMw+7UKvEtgqJyGgrfWcYPVSCVV0M
-# jlRKPxZ9s0zRm+BZk7u8JvS1fEv0c+49NWVHfAy1zYILSE+8e4u8ASJGuXjoxl6t
-# 1EtxHDuhPJ4N0+AmqIg2QKFB6JsFhbzwhgfAv9QMVrCOddB7IvLEcn0ARzX6lEwm
-# BnlPoA0ux1DwLZOmP0HPehbAbl2CMm0ToXrNKMLOFirMxQWSHH3bWbq2ihD6dNAV
-# Z/JIMLWEe8xXLPxgKoF16+pUFriO9yJkMYcVskiQnnWRO2nGTmuKALXwl7k1ft5a
-# i6oyz+1JPz73MQOshxDDUxeY6u7u2u16J68BGPmyEQ==
+# BAGCNwIBFTAjBgkqhkiG9w0BCQQxFgQUzkNIIr2hELkT3X/SKLJkcVIJzT8wDQYJ
+# KoZIhvcNAQEBBQAEggEAmybg0WAEKU8YC03PjsGK7mWk6I1E9u0u+U68vOP759f3
+# sUbP1NkRbQDQZLa93reQjqppxbfe3MLmXshmiIKaXKuDjQAeHE3P3o7ornjkqgva
+# ERmjzQqxW9X/Zakhv0rsmXHOaLsuHXgA0K3zhcqBgqI05qnr1xXcfBo18YwWBVo5
+# 6q3zVtUNgPEc2g5F9t9M7YGLGPGE10N7pXJz6nxOZXrDROzx95YhMTP4jdeZ78Ep
+# uuINqYvZVGlW4/Fm55LY4P9TjPnyIRse9pBzALSTMjmsLWy4GMpDjMZ2Bag5W+FI
+# xDEmeFyLdlnVrTT+RYDAW1tuzA2ZPNtAyrlc4I/hng==
 # SIG # End signature block
